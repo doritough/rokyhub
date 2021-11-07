@@ -10,11 +10,11 @@ if game.PlaceId == 6329844902 then
         while true do
             if not getgenv().autofruit then return end
             for _,v in pairs(game.Workspace.Maps:GetChildren()) do
-                if v:IsA('Part') then
-                    game.Players.LocalPlayer.Character["Left Leg"].CFrame = v.CFrame
+                if v:IsA("Part") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
                     wait(0.1)
                     for _,l in pairs(v:GetDescendants()) do
-                        if l:IsA('ProximityPrompt') then
+                        if l:IsA("ProximityPrompt") then
                             fireproximityprompt(l)
                         end
                     end
