@@ -23,7 +23,7 @@ if game.PlaceId == 6329844902 then
             wait()
         end
     end)
-     MainSection:NewToggle("Devilfruit Sniper", "Pickup dropped fruits lol", function(v)
+     MainSection:NewToggle("Item Sniper", "Pickup dropped items and fruits lol", function(v)
         getgenv().autosnipe = v
         while true do
             if not getgenv().autosnipe then return end
