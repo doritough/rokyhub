@@ -1,0 +1,28 @@
+if game.PlaceId == 6329844902 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Roky Hub | Last Pirates", "Ocean")
+    local Main = Window:NewTab("Auto Pickups")
+    local MainSection = Main:NewSection("Main")
+    MainSection:NewToggle("Autotrack Fruit", "Pickup spawned fruits lol", function(v)
+        getgenv().autofruit = v
+        while true do
+            if not getgenv().autofruit then return end
+            for _,v in pairs(game.Workspace.Maps:GetChildren()) do
+                if v:IsA('Part') then
+                    local cframe = game.Players.LocalPlayer.Character["Left Leg"].CFrame
+                    game.Players.LocalPlayer.Character["Left Leg"].CFrame = v.CFrame
+                    wait(0.1)
+                    for _,l in pairs(v:GetDescendants()) do
+                        if l:IsA('ProximityPrompt') then
+                            fireproximityprompt(l, 100)
+                        end
+                    end
+                    wait(1)
+                    game.Players.LocalPlayer.Character["Left Leg"].CFrame = cframe
+                end
+            end
+            wait()
+        end
+    end)
+    local Soon = Main:NewSection("Coming Soon")
+end
