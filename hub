@@ -5,7 +5,7 @@ if game.PlaceId == 6329844902 then
     local MainSection = Auto:NewSection("Main")
     local TP = Window:NewTab("Teleports")
     local TMainsSection = TP:NewSection("Island Teleports")
-    MainSection:NewToggle("Autotrack Fruit", "Pickup spawned fruits lol", function(v)
+    MainSection:NewToggle("Autotrack Fruit (updated)", "Pickup spawned fruits lol", function(v)
         getgenv().autofruit = v
         while true do
             if not getgenv().autofruit then return end
