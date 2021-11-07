@@ -27,13 +27,11 @@ if game.PlaceId == 6329844902 then
         getgenv().autosnipe = v
         while true do
             if not getgenv().autosnipe then return end
-            for _,v in pairs(game.Workspace.Maps:GetChildren()) do
+            for _,v in pairs(game.Workspace:GetChildren()) do
                 if v:IsA('Tool') then
-                    for _,l in pairs(v:GetDescendants()) do
-                        if l.Name == "TouchInterest" and v.Parent then
-                            firetouchinterest(game.Players.LocalPlayer.Character.head, v.Parent, 0)
-                            wait()
-                            firetouchinterest(game.Players.LocalPlayer.Character.head, v.Parent, 1)
+                    for _,l in pairs(v:GetChildren()) do
+                        if l.Name == "Handle" then
+                            firetouchinterest(game.Players.LocalPlayer.Character.head, l.Parent, 0)
                         end
                     end
                 end
