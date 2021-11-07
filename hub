@@ -1,28 +1,76 @@
 if game.PlaceId == 6329844902 then
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
     local Window = Library.CreateLib("Roky Hub | Last Pirates", "Ocean")
-    local Main = Window:NewTab("Auto Pickups")
-    local MainSection = Main:NewSection("Main")
+    local Auto = Window:NewTab("Auto Pickups")
+    local MainSection = Auto:NewSection("Main")
+    local TP = Window:NewTab("Teleports")
+    local TMainsSection = TP:NewSection("Island Teleports")
     MainSection:NewToggle("Autotrack Fruit", "Pickup spawned fruits lol", function(v)
         getgenv().autofruit = v
         while true do
             if not getgenv().autofruit then return end
             for _,v in pairs(game.Workspace.Maps:GetChildren()) do
                 if v:IsA('Part') then
-                    local cframe = game.Players.LocalPlayer.Character["Left Leg"].CFrame
                     game.Players.LocalPlayer.Character["Left Leg"].CFrame = v.CFrame
                     wait(0.1)
                     for _,l in pairs(v:GetDescendants()) do
                         if l:IsA('ProximityPrompt') then
-                            fireproximityprompt(l, 100)
+                            fireproximityprompt(l)
                         end
                     end
-                    wait(1)
-                    game.Players.LocalPlayer.Character["Left Leg"].CFrame = cframe
                 end
             end
             wait()
         end
     end)
-    local Soon = Main:NewSection("Coming Soon")
+     MainSection:NewToggle("Devilfruit Sniper", "Pickup dropped fruits lol", function(v)
+        getgenv().autosnipe = v
+        while true do
+            if not getgenv().autosnipe then return end
+            for _,v in pairs(game.Workspace.Maps:GetChildren()) do
+                if v:IsA('Tool') then
+                    for _,l in pairs(v:GetDescendants()) do
+                        if l.Name == "TouchInterest" and v.Parent then
+                            firetouchinterest(game.Players.LocalPlayer.Character.head, v.Parent, 0)
+                            wait()
+                            firetouchinterest(game.Players.LocalPlayer.Character.head, v.Parent, 1)
+                        end
+                    end
+                end
+            end
+            wait()
+        end
+    end)
+    local Soon = Auto:NewSection("Coming Soon")
+    TMainsSection:NewButton("Starter Island", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].StarterSpawnLocation.CFrame
+    end)
+     TMainsSection:NewButton("Carnival Island", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].BuggySpawnLocation.CFrame
+    end)
+     TMainsSection:NewButton("Rock Island", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].RevolutionaryLocation.CFrame
+    end)
+      TMainsSection:NewButton("Justica Isle", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].MarineSpawnLocation.CFrame
+      end)
+     TMainsSection:NewButton("Baratie", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].Sky2SpawnLocation.CFrame
+     end)
+TMainsSection:NewButton("Fishman Island", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].FishmanSpawnLocation.CFrame
+end)
+TMainsSection:NewButton("Snow Island", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].ColosseumSpawnLocation.CFrame
+end)
+TMainsSection:NewButton("Hollow Land", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].SkySpawnLocation.CFrame
+end)
+TMainsSection:NewButton("Castle of Dreams", "TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Spawn island"].ASpawnLocation.CFrame
+end)
+local tMiscSection = TP:NewSection("Miscellaneous")
+tMiscSection:NewButton("Haunted Ship", "TP Misc", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5539.89, 74.6477, 5754.64)
+end)
 end
